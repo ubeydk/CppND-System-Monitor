@@ -19,7 +19,16 @@ Process::Process(int pid){
 int Process::Pid() { return pid_; }
 
 // TODO: Return this process's CPU utilization
-float Process::CpuUtilization() { return cpu_utilization_; }
+float Process::CpuUtilization() { 
+    long current_process_tick = LinuxParser::ActiveJiffies(pid_);
+    long current_system_tick = LinuxParser::Jiffies();
+    long process_duration = current_process_tick - last_process_tick;
+    long system_duration = current_system_tick - last_system_tick;
+    last_system_tick = current_system_tick;
+    last_process_tick = current_process_tick;
+    cpu_utilization_ = ((float)process_duration) / system_duration;
+    return cpu_utilization_; 
+}
 
 // TODO: Return the command that generated this process
 string Process::Command() { return LinuxParser::Command(pid_); }

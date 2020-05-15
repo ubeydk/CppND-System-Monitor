@@ -21,6 +21,8 @@ class Process {
  private:
     int pid_;
     float cpu_utilization_;
+    long last_process_tick = 0;
+    long last_system_tick = 0;
 };
 
 #endif
