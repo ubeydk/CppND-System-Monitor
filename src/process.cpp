@@ -26,7 +26,7 @@ float Process::CpuUtilization() {
     long system_duration = current_system_tick - last_system_tick;
     last_system_tick = current_system_tick;
     last_process_tick = current_process_tick;
-    cpu_utilization_ = (static_cast<float>process_duration) / system_duration;
+    cpu_utilization_ = (static_cast<float>(process_duration)) / system_duration;
     return cpu_utilization_; 
 }
 
