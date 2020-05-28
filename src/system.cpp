@@ -32,11 +32,12 @@ vector<Process>& System::Processes() {
     for(Process &process: processes_){
         process.CpuUtilization();
     }
+    sort(processes_.rbegin(), processes_.rend());
     return processes_; 
 }
 
 // TODO: Return the system's kernel identifier (string)
-std::string System::Kernel() { return string(); }
+std::string System::Kernel() { return LinuxParser::Kernel(); }
 
 // TODO: Return the system's memory utilization
 float System::MemoryUtilization() { return LinuxParser::MemoryUtilization(); }

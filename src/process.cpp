@@ -13,6 +13,8 @@ using std::vector;
 
 Process::Process(int pid){
     pid_ = pid;
+    last_process_tick = LinuxParser::ActiveJiffies(pid_);
+    last_system_tick = LinuxParser::Jiffies();
 }
 
 // TODO: Return this process's ID
@@ -24,8 +26,6 @@ float Process::CpuUtilization() {
     long current_system_tick = LinuxParser::Jiffies();
     long process_duration = current_process_tick - last_process_tick;
     long system_duration = current_system_tick - last_system_tick;
-    last_system_tick = current_system_tick;
-    last_process_tick = current_process_tick;
     cpu_utilization_ = (static_cast<float>(process_duration)) / system_duration;
     return cpu_utilization_; 
 }
