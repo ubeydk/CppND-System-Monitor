@@ -14,9 +14,9 @@ string Format::ElapsedTime(long seconds) {
     string hour = std::to_string(seconds / SECOND_IN_HOUR);
     seconds %= SECOND_IN_HOUR;
     string minute = std::to_string(seconds / SECOND_IN_MIN);
-    string seconds = std::to_string(seconds % SECOND_IN_MIN);
+    string second = std::to_string(seconds % SECOND_IN_MIN);
     if(hour.size() == 1) hour = "0" + hour;
     if(minute.size() == 1) minute = "0" + minute;
-    if(seconds.size() == 1) seconds = "0" + seconds;
-    return hour + ":" + minute + ":" + seconds;
+    if(second.size() == 1) second = "0" + second;
+    return hour + ":" + minute + ":" + second;
 }
